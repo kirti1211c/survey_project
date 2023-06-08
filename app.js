@@ -175,9 +175,13 @@ app.get('/report', (req, res) => {
 
 
 app.get('/survey', (req, res) => {
-    qq= ques.find({});
-    console.log("survey");
-    res.render('survey.ejs', { ques: qq });
+    var qq = [];
+    ques.find({}).then(pdata => {
+        qq = pdata;
+        console.log(qq);
+        console.log("survey");
+        res.render('survey.ejs', { ques: qq });
+    });
 })
 
 app.post('/survey', urlencodedParser, (req, res) => {
