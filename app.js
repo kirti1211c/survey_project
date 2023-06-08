@@ -42,9 +42,9 @@ var qq = [];
 //         console.log(err)
 //     })
 
-async function qdata(){
-    qq=await ques.find({});
-}
+// async function qdata(){
+//     qq=await ques.find({});
+// }
 
 
 
@@ -175,7 +175,7 @@ app.get('/report', (req, res) => {
 
 
 app.get('/survey', (req, res) => {
-    qdata();
+    qq= ques.find({});
     console.log("survey");
     res.render('survey.ejs', { ques: qq });
 })
