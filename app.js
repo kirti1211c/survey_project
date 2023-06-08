@@ -41,10 +41,12 @@ var qq = [];
 //         console.log("error")
 //         console.log(err)
 //     })
-var qq = [];
-ques.find({}).then(pdata => {
-    qq = pdata
-});
+
+async function qdata(){
+    qq=await ques.find({});
+}
+
+
 
 app.get('/', (req, res) => {
     console.log("homeeeee");
@@ -173,6 +175,7 @@ app.get('/report', (req, res) => {
 
 
 app.get('/survey', (req, res) => {
+    qdata();
     console.log("survey");
     res.render('survey.ejs', { ques: qq });
 })
