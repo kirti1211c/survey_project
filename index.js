@@ -10,6 +10,17 @@ const jwtSecret = "secret";
 const store = require('store');
 
 app.use(express.static('public'));
+
+
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("connected to mongoose");
+    })
+    .catch(err => {
+        console.log("error")
+        console.log(err)
+    })
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -22,14 +33,14 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var ques_set = [];
 var qq = [];
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log("connected to mongoose");
-    })
-    .catch(err => {
-        console.log("error")
-        console.log(err)
-    })
+// mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => {
+//         console.log("connected to mongoose");
+//     })
+//     .catch(err => {
+//         console.log("error")
+//         console.log(err)
+//     })
 var qq = [];
 ques.find({}).then(pdata => {
     qq = pdata
